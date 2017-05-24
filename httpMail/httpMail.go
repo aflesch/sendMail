@@ -21,7 +21,7 @@ type SendMailConfig struct {
 }
 
 func CreateMessage(templateFile, name string) (string, error) {
-	type Person struct {
+	type Params struct {
 		Name string //exported field since it begins with a capital letter
 	}
 
@@ -29,7 +29,7 @@ func CreateMessage(templateFile, name string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	p := Person{Name: name}
+	p := Params{Name: name}
 	buf := new(bytes.Buffer)
 	t.Execute(buf, p)
 	return buf.String(), nil
